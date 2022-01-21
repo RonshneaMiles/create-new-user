@@ -49,17 +49,23 @@ newUserForm.addEventListener("submit", (event) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      name: fname,
-      email: email,
-      password: password,
-      occupation: occupation,
-      state: state,
-    }), //also try body:{JSON.stringify(formDataObj)}
+    body: JSON.stringify(formDataObj),
+    // {
+    //   name: fname,
+    //   email: email,
+    //   password: password,
+    //   occupation: occupation,
+    //   state: state,
+    //  }
+    //also try body:{JSON.stringify(formDataObj)}
   })
-    .then((response) => response.text())
-    .then((postData) => {
-      console.log("Success:", postData);
+    .then((response) => {
+      if (response.ok) {
+        console.log(response.text());
+      }
+    })
+    .then((response) => {
+      console.log("Success:", response);
       //success is shown, but post data is empty ?
       newUserForm.style.display = "none";
       successConfirmation.style.display = "block";
